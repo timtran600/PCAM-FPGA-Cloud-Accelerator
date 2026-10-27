@@ -1,0 +1,20 @@
+# data and build products
+data/*.h5
+data/*.gz
+models/*
+!models/*.md
+artifacts/
+phase3_cloud/xclbin/
+*.xclbin
+*.xo
+_x/
+.Xil/
+*.log
+*.jou
+
+# python
+pcam_env/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
