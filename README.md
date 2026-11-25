@@ -39,6 +39,8 @@ Phase 1 runs on the GPU box, not the OCT build VM. Only `artifacts/` and
 conda create -n pcam python=3.10 -y && conda activate pcam
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+.\pcam_env\Scripts\Activate.ps1
 ```
 
 ## Data

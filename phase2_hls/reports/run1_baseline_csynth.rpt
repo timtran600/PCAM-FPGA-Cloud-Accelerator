@@ -1,0 +1,796 @@
+
+
+================================================================
+== Synthesis Summary Report of 'pcam_infer'
+================================================================
++ General Information: 
+    * Date:           Tue Nov 24 20:34:21 2026
+    * Version:        2023.2 (Build 4023990 on Oct 11 2023)
+    * Project:        pcam_infer_prj
+    * Solution:       sol1 (Vitis Kernel Flow Target)
+    * Product family: virtexuplusHBM
+    * Target device:  xcu280-fsvh2892-2L-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+--------+----------+----------+----------+--------------+------------+-----+
+    |                                        Modules                                       |  Issue |       | Latency  |  Latency  | Iteration|          |  Trip  |          |          |          |              |            |     |
+    |                                        & Loops                                       |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval |  Count | Pipelined|   BRAM   |    DSP   |      FF      |     LUT    | URAM|
+    +--------------------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+--------+----------+----------+----------+--------------+------------+-----+
+    |+ pcam_infer                                                                          |  Timing|  -0.38|         -|          -|         -|         -|       -|        no|  292 (7%)|  69 (~0%)|  276350 (10%)|  63254 (4%)|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_228_1_VITIS_LOOP_228_2_VITIS_LOOP_228_3_VITIS_LOO   |  Timing|  -0.00|       509|  1.695e+03|         -|       509|       -|        no|         -|   1 (~0%)|    1184 (~0%)|  2881 (~0%)|    -|
+    |  o VITIS_LOOP_228_1_VITIS_LOOP_228_2_VITIS_LOOP_228_3_VITIS_LOOP_228_4               |       -|   2.43|       507|  1.688e+03|        77|         1|     432|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_229_5_VITIS_LOOP_229_6_VITIS_LOOP_229_7_VITIS_LOO   |  Timing|  -0.00|      4685|  1.560e+04|         -|      4685|       -|        no|         -|         -|     944 (~0%)|  2904 (~0%)|    -|
+    |  o VITIS_LOOP_229_5_VITIS_LOOP_229_6_VITIS_LOOP_229_7_VITIS_LOOP_229_8               |       -|   2.43|      4683|  1.559e+04|        77|         1|    4608|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_230_9_VITIS_LOOP_230_10_VITIS_LOOP_230_11_VITIS_L   |  Timing|  -0.00|     18509|  6.163e+04|         -|     18509|       -|        no|         -|         -|     955 (~0%)|  2913 (~0%)|    -|
+    |  o VITIS_LOOP_230_9_VITIS_LOOP_230_10_VITIS_LOOP_230_11_VITIS_LOOP_230_12            |       -|   2.43|     18507|  6.163e+04|        77|         1|   18432|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_231_13_VITIS_LOOP_231_14_VITIS_LOOP_231_15_VITIS_s  |  Timing|  -0.00|     36941|  1.230e+05|         -|     36941|       -|        no|         -|         -|     961 (~0%)|  2923 (~0%)|    -|
+    |  o VITIS_LOOP_231_13_VITIS_LOOP_231_14_VITIS_LOOP_231_15_VITIS_LOOP_231_16           |       -|   2.43|     36939|  1.230e+05|        77|         1|   36864|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_232_17_VITIS_LOOP_232_18_VITIS_LOOP_232_19_VITIS_s  |  Timing|  -0.00|     73805|  2.458e+05|         -|     73805|       -|        no|         -|         -|     970 (~0%)|  2949 (~0%)|    -|
+    |  o VITIS_LOOP_232_17_VITIS_LOOP_232_18_VITIS_LOOP_232_19_VITIS_LOOP_232_20           |       -|   2.43|     73803|  2.458e+05|        77|         1|   73728|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_234_21_VITIS_LOOP_235_22                            |  Timing|  -0.38|       332|  1.106e+03|         -|       332|       -|        no|         -|         -|   10797 (~0%)|  2781 (~0%)|    -|
+    |  o VITIS_LOOP_234_21_VITIS_LOOP_235_22                                               |       -|   2.43|       330|  1.099e+03|        76|         1|     256|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_238_23                                              |       -|   1.02|        18|     59.940|         -|        18|       -|        no|         -|         -|    1544 (~0%)|    81 (~0%)|    -|
+    |  o VITIS_LOOP_238_23                                                                 |       -|   2.43|        16|     53.280|         1|         1|      16|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_239_24                                              |  Timing|  -0.00|       170|    566.100|         -|       170|       -|        no|         -|         -|    42966 (1%)|   814 (~0%)|    -|
+    |  o VITIS_LOOP_239_24                                                                 |      II|   2.43|       168|    559.440|        76|         3|      32|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_240_25                                              |  Timing|  -0.00|       266|    885.780|         -|       266|       -|        no|         -|         -|    42971 (1%)|   816 (~0%)|    -|
+    |  o VITIS_LOOP_240_25                                                                 |      II|   2.43|       264|    879.120|        76|         3|      64|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_241_26                                              |  Timing|  -0.00|       266|    885.780|         -|       266|       -|        no|         -|         -|    42971 (1%)|   816 (~0%)|    -|
+    |  o VITIS_LOOP_241_26                                                                 |      II|   2.43|       264|    879.120|        76|         3|      64|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_242_27                                              |  Timing|  -0.00|       458|  1.525e+03|         -|       458|       -|        no|         -|         -|    42976 (1%)|   818 (~0%)|    -|
+    |  o VITIS_LOOP_242_27                                                                 |      II|   2.43|       456|  1.518e+03|        76|         3|     128|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_243_28                                              |  Timing|  -0.00|       458|  1.525e+03|         -|       458|       -|        no|         -|         -|    42976 (1%)|   818 (~0%)|    -|
+    |  o VITIS_LOOP_243_28                                                                 |      II|   2.43|       456|  1.518e+03|        76|         3|     128|       yes|         -|         -|             -|           -|    -|
+    | + pcam_infer_Pipeline_VITIS_LOOP_245_29                                              |       -|   1.61|         4|     13.320|         -|         4|       -|        no|         -|         -|      69 (~0%)|    57 (~0%)|    -|
+    |  o VITIS_LOOP_245_29                                                                 |       -|   2.43|         2|      6.660|         1|         1|       2|       yes|         -|         -|             -|           -|    -|
+    | o TILE_LOOP                                                                          |       -|   2.43|         -|          -|  31549338|         -|       -|        no|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_LOAD_TILE_VITIS_LOOP_258_30_VITIS_LOOP_259_31                 |  Timing|  -0.00|     27725|  9.232e+04|         -|     27725|       -|        no|         -|         -|   21413 (~0%)|  3500 (~0%)|    -|
+    |   o LOAD_TILE_VITIS_LOOP_258_30_VITIS_LOOP_259_31                                    |       -|   2.43|     27723|  9.232e+04|        77|         1|   27648|       yes|         -|         -|             -|           -|    -|
+    |  + conv3x3_requant_3_16_96_96_s                                                      |       -|   0.14|    147506|  4.912e+05|         -|    147506|       -|        no|         -|  59 (~0%)|    7720 (~0%)|  8052 (~0%)|    -|
+    |   o CONV_OC_CONV_ROW_CONV_COL                                                        |       -|   2.43|    147504|  4.912e+05|        50|         1|  147456|       yes|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL                                      |       -|   0.01|     36869|  1.228e+05|         -|     36869|       -|        no|         -|         -|     200 (~0%)|   496 (~0%)|    -|
+    |   o POOL_C_POOL_ROW_POOL_COL                                                         |       -|   2.43|     36867|  1.228e+05|         5|         1|   36864|       yes|         -|         -|             -|           -|    -|
+    |  + conv3x3_requant_16_32_48_48_s                                                     |  Timing|  -0.09|  11870211|  3.953e+07|         -|  11870211|       -|        no|         -|   1 (~0%)|    1066 (~0%)|  2688 (~0%)|    -|
+    |   o CONV_OC_CONV_ROW_CONV_COL                                                        |       -|   2.43|  11870210|  3.953e+07|       161|         -|   73728|        no|         -|         -|             -|           -|    -|
+    |    + conv3x3_requant_16_32_48_48_Pipeline_CONV_IC_CONV_KH_CONV_KW                    |  Timing|  -0.09|       151|    502.830|         -|       151|       -|        no|         -|   1 (~0%)|     369 (~0%)|   598 (~0%)|    -|
+    |     o CONV_IC_CONV_KH_CONV_KW                                                        |       -|   2.43|       149|    496.170|         7|         1|     144|       yes|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL1                                     |       -|   0.06|     18437|  6.140e+04|         -|     18437|       -|        no|         -|         -|     192 (~0%)|   480 (~0%)|    -|
+    |   o POOL_C_POOL_ROW_POOL_COL                                                         |       -|   2.43|     18435|  6.139e+04|         5|         1|   18432|       yes|         -|         -|             -|           -|    -|
+    |  + conv3x3_requant_32_64_24_24_s                                                     |  Timing|  -0.09|  11243523|  3.744e+07|         -|  11243523|       -|        no|         -|   1 (~0%)|    1062 (~0%)|  2672 (~0%)|    -|
+    |   o CONV_OC_CONV_ROW_CONV_COL                                                        |       -|   2.43|  11243522|  3.744e+07|       305|         -|   36864|        no|         -|         -|             -|           -|    -|
+    |    + conv3x3_requant_32_64_24_24_Pipeline_CONV_IC_CONV_KH_CONV_KW                    |  Timing|  -0.09|       295|    982.350|         -|       295|       -|        no|         -|   1 (~0%)|     371 (~0%)|   596 (~0%)|    -|
+    |     o CONV_IC_CONV_KH_CONV_KW                                                        |       -|   2.43|       293|    975.690|         7|         1|     288|       yes|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL2                                     |       -|   0.12|      9222|  3.071e+04|         -|      9222|       -|        no|         -|         -|     186 (~0%)|   476 (~0%)|    -|
+    |   o POOL_C_POOL_ROW_POOL_COL                                                         |       -|   2.43|      9220|  3.070e+04|         6|         1|    9216|       yes|         -|         -|             -|           -|    -|
+    |  + conv3x3_requant_64_64_12_12_s                                                     |  Timing|  -0.09|   5465091|  1.820e+07|         -|   5465091|       -|        no|         -|   1 (~0%)|    1048 (~0%)|  2660 (~0%)|    -|
+    |   o CONV_OC_CONV_ROW_CONV_COL                                                        |       -|   2.43|   5465090|  1.820e+07|       593|         -|    9216|        no|         -|         -|             -|           -|    -|
+    |    + conv3x3_requant_64_64_12_12_Pipeline_CONV_IC_CONV_KH_CONV_KW                    |  Timing|  -0.09|       583|  1.941e+03|         -|       583|       -|        no|         -|   1 (~0%)|     371 (~0%)|   597 (~0%)|    -|
+    |     o CONV_IC_CONV_KH_CONV_KW                                                        |       -|   2.43|       581|  1.935e+03|         7|         1|     576|       yes|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL3                                     |  Timing|  -0.18|      2309|  7.689e+03|         -|      2309|       -|        no|         -|         -|     169 (~0%)|   479 (~0%)|    -|
+    |   o POOL_C_POOL_ROW_POOL_COL                                                         |       -|   2.43|      2307|  7.682e+03|         5|         1|    2304|       yes|         -|         -|             -|           -|    -|
+    |  + conv3x3_requant_64_128_6_6_s                                                      |  Timing|  -0.09|   2727939|  9.084e+06|         -|   2727939|       -|        no|         -|   1 (~0%)|    1047 (~0%)|  2601 (~0%)|    -|
+    |   o CONV_OC_CONV_ROW_CONV_COL                                                        |       -|   2.43|   2727938|  9.084e+06|       592|         -|    4608|        no|         -|         -|             -|           -|    -|
+    |    + conv3x3_requant_64_128_6_6_Pipeline_CONV_IC_CONV_KH_CONV_KW                     |  Timing|  -0.09|       583|  1.941e+03|         -|       583|       -|        no|         -|   1 (~0%)|     367 (~0%)|   604 (~0%)|    -|
+    |     o CONV_IC_CONV_KH_CONV_KW                                                        |       -|   2.43|       581|  1.935e+03|         7|         1|     576|       yes|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_GAP_C                                                         |       -|   0.11|       136|    452.880|         -|       136|       -|        no|         -|         -|     802 (~0%)|  1955 (~0%)|    -|
+    |   o GAP_C                                                                            |       -|   2.43|       134|    446.220|         8|         1|     128|       yes|         -|         -|             -|           -|    -|
+    |  + pcam_infer_Pipeline_STORE_SCORES                                                  |       -|   1.61|         4|     13.320|         -|         4|       -|        no|         -|         -|      69 (~0%)|    89 (~0%)|    -|
+    |   o STORE_SCORES                                                                     |       -|   2.43|         2|      6.660|         1|         1|       2|       yes|         -|         -|             -|           -|    -|
+    |  o FC_OC                                                                             |       -|   2.43|       272|    905.760|       136|         -|       2|        no|         -|         -|             -|           -|    -|
+    |   + pcam_infer_Pipeline_FC_IC                                                        |       -|   0.71|       133|    442.890|         -|       133|       -|        no|         -|   1 (~0%)|     114 (~0%)|   134 (~0%)|    -|
+    |    o FC_IC                                                                           |       -|   2.43|       131|    436.230|         5|         1|     128|       yes|         -|         -|             -|           -|    -|
+    +--------------------------------------------------------------------------------------+--------+-------+----------+-----------+----------+----------+--------+----------+----------+----------+--------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| Interface  | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   | Resource Estimate |
+|            | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |                   |
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| m_axi_gmem | 8 -> 512   | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          | BRAM=30           |
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                                         |
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 4=AP_CONTINUE 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                                           |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                                      |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                                      |
+| s_axi_control | w_blob_1 | 0x10   | 32    | W      | Data signal of w_blob            |                                                                                    |
+| s_axi_control | w_blob_2 | 0x14   | 32    | W      | Data signal of w_blob            |                                                                                    |
+| s_axi_control | p_blob_1 | 0x1c   | 32    | W      | Data signal of p_blob            |                                                                                    |
+| s_axi_control | p_blob_2 | 0x20   | 32    | W      | Data signal of p_blob            |                                                                                    |
+| s_axi_control | tiles_1  | 0x28   | 32    | W      | Data signal of tiles             |                                                                                    |
+| s_axi_control | tiles_2  | 0x2c   | 32    | W      | Data signal of tiles             |                                                                                    |
+| s_axi_control | scores_1 | 0x34   | 32    | W      | Data signal of scores            |                                                                                    |
+| s_axi_control | scores_2 | 0x38   | 32    | W      | Data signal of scores            |                                                                                    |
+| s_axi_control | n_tiles  | 0x40   | 32    | W      | Data signal of n_tiles           |                                                                                    |
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+---------------+-----------+
+| Interface | Type          | Ports     |
++-----------+---------------+-----------+
+| ap_clk    | clock         | ap_clk    |
+| ap_rst_n  | reset         | ap_rst_n  |
+| interrupt | interrupt     | interrupt |
+| ap_ctrl   | ap_ctrl_chain |           |
++-----------+---------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+--------------------+
+| Argument | Direction | Datatype           |
++----------+-----------+--------------------+
+| w_blob   | inout     | ap_int<8> const *  |
+| p_blob   | inout     | ap_int<32> const * |
+| tiles    | inout     | ap_uint<8> const * |
+| scores   | inout     | ap_int<32>*        |
+| n_tiles  | in        | int                |
++----------+-----------+--------------------+
+
+* SW-to-HW Mapping
++----------+---------------+-----------+----------+------------------------------------+
+| Argument | HW Interface  | HW Type   | HW Usage | HW Info                            |
++----------+---------------+-----------+----------+------------------------------------+
+| w_blob   | m_axi_gmem    | interface |          |                                    |
+| w_blob   | s_axi_control | register  | offset   | name=w_blob_1 offset=0x10 range=32 |
+| w_blob   | s_axi_control | register  | offset   | name=w_blob_2 offset=0x14 range=32 |
+| p_blob   | m_axi_gmem    | interface |          |                                    |
+| p_blob   | s_axi_control | register  | offset   | name=p_blob_1 offset=0x1c range=32 |
+| p_blob   | s_axi_control | register  | offset   | name=p_blob_2 offset=0x20 range=32 |
+| tiles    | m_axi_gmem    | interface |          |                                    |
+| tiles    | s_axi_control | register  | offset   | name=tiles_1 offset=0x28 range=32  |
+| tiles    | s_axi_control | register  | offset   | name=tiles_2 offset=0x2c range=32  |
+| scores   | m_axi_gmem    | interface |          |                                    |
+| scores   | s_axi_control | register  | offset   | name=scores_1 offset=0x34 range=32 |
+| scores   | s_axi_control | register  | offset   | name=scores_2 offset=0x38 range=32 |
+| n_tiles  | s_axi_control | register  |          | name=n_tiles offset=0x40 range=32  |
++----------+---------------+-----------+----------+------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* Inferred Burst Summary
++--------------+-----------+--------+-------+
+| HW Interface | Direction | Length | Width |
++--------------+-----------+--------+-------+
+| m_axi_gmem   | read      | 3      | 512   |
++--------------+-----------+--------+-------+
+
+* All M_AXI Variable Accesses
++--------------+----------+-------------------------------+-----------+--------------+--------+-------------------+-------------------------------+------------+----------------------------------------------------------------------------------------------------------+
+| HW Interface | Variable | Access Location               | Direction | Burst Status | Length | Loop              | Loop Location                 | Resolution | Problem                                                                                                  |
++--------------+----------+-------------------------------+-----------+--------------+--------+-------------------+-------------------------------+------------+----------------------------------------------------------------------------------------------------------+
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:228:226 | read      | Widen Fail   |        | VITIS_LOOP_228_4  | ../src/pcam_infer.cpp:228:175 | 214-235    | Start index of the access is unaligned                                                                   |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:228:226 | read      | Inferred     | 432    | VITIS_LOOP_228_1  | ../src/pcam_infer.cpp:228:27  |            |                                                                                                          |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:229:227 | read      | Widen Fail   |        | VITIS_LOOP_229_8  | ../src/pcam_infer.cpp:229:176 | 214-235    | Start index of the access is unaligned                                                                   |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:229:227 | read      | Inferred     | 4608   | VITIS_LOOP_229_5  | ../src/pcam_infer.cpp:229:27  |            |                                                                                                          |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:230:230 | read      | Widen Fail   |        | VITIS_LOOP_230_12 | ../src/pcam_infer.cpp:230:179 | 214-235    | Start index of the access is unaligned                                                                   |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:230:230 | read      | Inferred     | 18432  | VITIS_LOOP_230_9  | ../src/pcam_infer.cpp:230:27  |            |                                                                                                          |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:231:231 | read      | Widen Fail   |        | VITIS_LOOP_231_16 | ../src/pcam_infer.cpp:231:180 | 214-235    | Start index of the access is unaligned                                                                   |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:231:231 | read      | Inferred     | 36864  | VITIS_LOOP_231_13 | ../src/pcam_infer.cpp:231:28  |            |                                                                                                          |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:232:232 | read      | Widen Fail   |        | VITIS_LOOP_232_20 | ../src/pcam_infer.cpp:232:181 | 214-235    | Start index of the access is unaligned                                                                   |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:232:232 | read      | Inferred     | 73728  | VITIS_LOOP_232_17 | ../src/pcam_infer.cpp:232:28  |            |                                                                                                          |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:236:29  | read      | Widened      | 16     | VITIS_LOOP_235_22 | ../src/pcam_infer.cpp:235:32  |            |                                                                                                          |
+| m_axi_gmem   | w_blob   | ../src/pcam_infer.cpp:236:29  | read      | Inferred     | 256    | VITIS_LOOP_234_21 | ../src/pcam_infer.cpp:234:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:28  | read      | Widen Fail   |        |                   |                               | 214-353    | Could not widen since type i512 size is greater than or equal to the max_widen_bitwidth threshold of 512 |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:129 | read      | Widened      | 1      | VITIS_LOOP_238_23 | ../src/pcam_infer.cpp:238:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:94  | read      | Widened      | 1      | VITIS_LOOP_238_23 | ../src/pcam_infer.cpp:238:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:66  | read      | Widened      | 1      | VITIS_LOOP_238_23 | ../src/pcam_infer.cpp:238:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:129 | read      | Inferred     | 16     | VITIS_LOOP_238_23 | ../src/pcam_infer.cpp:238:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:94  | read      | Inferred     | 16     | VITIS_LOOP_238_23 | ../src/pcam_infer.cpp:238:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:238:66  | read      | Inferred     | 16     | VITIS_LOOP_238_23 | ../src/pcam_infer.cpp:238:28  |            |                                                                                                          |
+| m_axi_gmem   |          | ../src/pcam_infer.cpp:239:28  | read      | Fail         |        |                   |                               | 214-224    | Could not burst due to multiple potential reads to the same bundle in the same region.                   |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:239:151 | read      | Widened      | 2      | VITIS_LOOP_239_24 | ../src/pcam_infer.cpp:239:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:239:105 | read      | Widened      | 2      | VITIS_LOOP_239_24 | ../src/pcam_infer.cpp:239:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:239:66  | read      | Widened      | 2      | VITIS_LOOP_239_24 | ../src/pcam_infer.cpp:239:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:239:151 | read      | Inferred     | 32     | VITIS_LOOP_239_24 | ../src/pcam_infer.cpp:239:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:239:105 | read      | Inferred     | 32     | VITIS_LOOP_239_24 | ../src/pcam_infer.cpp:239:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:239:66  | read      | Inferred     | 32     | VITIS_LOOP_239_24 | ../src/pcam_infer.cpp:239:28  |            |                                                                                                          |
+| m_axi_gmem   |          | ../src/pcam_infer.cpp:240:28  | read      | Fail         |        |                   |                               | 214-224    | Could not burst due to multiple potential reads to the same bundle in the same region.                   |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:240:173 | read      | Widened      | 4      | VITIS_LOOP_240_25 | ../src/pcam_infer.cpp:240:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:240:116 | read      | Widened      | 4      | VITIS_LOOP_240_25 | ../src/pcam_infer.cpp:240:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:240:66  | read      | Widened      | 4      | VITIS_LOOP_240_25 | ../src/pcam_infer.cpp:240:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:240:173 | read      | Inferred     | 64     | VITIS_LOOP_240_25 | ../src/pcam_infer.cpp:240:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:240:116 | read      | Inferred     | 64     | VITIS_LOOP_240_25 | ../src/pcam_infer.cpp:240:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:240:66  | read      | Inferred     | 64     | VITIS_LOOP_240_25 | ../src/pcam_infer.cpp:240:28  |            |                                                                                                          |
+| m_axi_gmem   |          | ../src/pcam_infer.cpp:241:28  | read      | Fail         |        |                   |                               | 214-224    | Could not burst due to multiple potential reads to the same bundle in the same region.                   |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:241:195 | read      | Widened      | 4      | VITIS_LOOP_241_26 | ../src/pcam_infer.cpp:241:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:241:127 | read      | Widened      | 4      | VITIS_LOOP_241_26 | ../src/pcam_infer.cpp:241:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:241:66  | read      | Widened      | 4      | VITIS_LOOP_241_26 | ../src/pcam_infer.cpp:241:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:241:195 | read      | Inferred     | 64     | VITIS_LOOP_241_26 | ../src/pcam_infer.cpp:241:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:241:127 | read      | Inferred     | 64     | VITIS_LOOP_241_26 | ../src/pcam_infer.cpp:241:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:241:66  | read      | Inferred     | 64     | VITIS_LOOP_241_26 | ../src/pcam_infer.cpp:241:28  |            |                                                                                                          |
+| m_axi_gmem   |          | ../src/pcam_infer.cpp:242:28  | read      | Fail         |        |                   |                               | 214-224    | Could not burst due to multiple potential reads to the same bundle in the same region.                   |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:242:219 | read      | Widened      | 8      | VITIS_LOOP_242_27 | ../src/pcam_infer.cpp:242:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:242:139 | read      | Widened      | 8      | VITIS_LOOP_242_27 | ../src/pcam_infer.cpp:242:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:242:67  | read      | Widened      | 8      | VITIS_LOOP_242_27 | ../src/pcam_infer.cpp:242:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:242:219 | read      | Inferred     | 128    | VITIS_LOOP_242_27 | ../src/pcam_infer.cpp:242:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:242:139 | read      | Inferred     | 128    | VITIS_LOOP_242_27 | ../src/pcam_infer.cpp:242:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:242:67  | read      | Inferred     | 128    | VITIS_LOOP_242_27 | ../src/pcam_infer.cpp:242:28  |            |                                                                                                          |
+| m_axi_gmem   |          | ../src/pcam_infer.cpp:243:28  | read      | Fail         |        |                   |                               | 214-224    | Could not burst due to multiple potential reads to the same bundle in the same region.                   |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:243:243 | read      | Widened      | 8      | VITIS_LOOP_243_28 | ../src/pcam_infer.cpp:243:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:243:151 | read      | Widened      | 8      | VITIS_LOOP_243_28 | ../src/pcam_infer.cpp:243:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:243:67  | read      | Widened      | 8      | VITIS_LOOP_243_28 | ../src/pcam_infer.cpp:243:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:243:243 | read      | Inferred     | 128    | VITIS_LOOP_243_28 | ../src/pcam_infer.cpp:243:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:243:151 | read      | Inferred     | 128    | VITIS_LOOP_243_28 | ../src/pcam_infer.cpp:243:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:243:67  | read      | Inferred     | 128    | VITIS_LOOP_243_28 | ../src/pcam_infer.cpp:243:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:245:63  | read      | Widened      | 1      | VITIS_LOOP_245_29 | ../src/pcam_infer.cpp:245:28  |            |                                                                                                          |
+| m_axi_gmem   | p_blob   | ../src/pcam_infer.cpp:245:63  | read      | Inferred     | 2      | VITIS_LOOP_245_29 | ../src/pcam_infer.cpp:245:28  |            |                                                                                                          |
+| m_axi_gmem   | tiles    | ../src/pcam_infer.cpp:260:33  | read      | Widened      | 864    | VITIS_LOOP_259_31 | ../src/pcam_infer.cpp:259:36  |            |                                                                                                          |
+| m_axi_gmem   | tiles    | ../src/pcam_infer.cpp:260:33  | read      | Fail         |        |                   |                               | 214-231    | Access is clobbered by call                                                                              |
+| m_axi_gmem   | tiles    | ../src/pcam_infer.cpp:260:33  | read      | Inferred     | 27648  | LOAD_TILE         | ../src/pcam_infer.cpp:257:9   |            |                                                                                                          |
+| m_axi_gmem   | scores   | ../src/pcam_infer.cpp:282:31  | write     | Widened      | 1      | STORE_SCORES      | ../src/pcam_infer.cpp:281:9   |            |                                                                                                          |
+| m_axi_gmem   | scores   | ../src/pcam_infer.cpp:282:31  | write     | Fail         |        |                   |                               | 214-231    | Access is clobbered by call                                                                              |
+| m_axi_gmem   | scores   | ../src/pcam_infer.cpp:282:31  | write     | Inferred     | 2      | STORE_SCORES      | ../src/pcam_infer.cpp:281:9   |            |                                                                                                          |
++--------------+----------+-------------------------------+-----------+--------------+--------+-------------------+-------------------------------+------------+----------------------------------------------------------------------------------------------------------+
+
+    * Resolution URL: docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=XXX-YYY.html (replace XXX-YYY with column value)
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------------------------------------------------+-----+--------+--------------------+-----+-----------+---------+
+| Name                                                                                 | DSP | Pragma | Variable           | Op  | Impl      | Latency |
++--------------------------------------------------------------------------------------+-----+--------+--------------------+-----+-----------+---------+
+| + pcam_infer                                                                         | 69  |        |                    |     |           |         |
+|   add_ln239_fu_1262_p2                                                               |     |        | add_ln239          | add | fabric    | 0       |
+|   add_ln239_1_fu_1278_p2                                                             |     |        | add_ln239_1        | add | fabric    | 0       |
+|   add_ln239_2_fu_1294_p2                                                             |     |        | add_ln239_2        | add | fabric    | 0       |
+|   add_ln240_fu_1310_p2                                                               |     |        | add_ln240          | add | fabric    | 0       |
+|   add_ln240_1_fu_1326_p2                                                             |     |        | add_ln240_1        | add | fabric    | 0       |
+|   add_ln240_2_fu_1342_p2                                                             |     |        | add_ln240_2        | add | fabric    | 0       |
+|   add_ln241_fu_1358_p2                                                               |     |        | add_ln241          | add | fabric    | 0       |
+|   add_ln241_1_fu_1374_p2                                                             |     |        | add_ln241_1        | add | fabric    | 0       |
+|   add_ln241_2_fu_1390_p2                                                             |     |        | add_ln241_2        | add | fabric    | 0       |
+|   add_ln242_fu_1406_p2                                                               |     |        | add_ln242          | add | fabric    | 0       |
+|   add_ln242_1_fu_1422_p2                                                             |     |        | add_ln242_1        | add | fabric    | 0       |
+|   add_ln242_2_fu_1438_p2                                                             |     |        | add_ln242_2        | add | fabric    | 0       |
+|   add_ln243_fu_1454_p2                                                               |     |        | add_ln243          | add | fabric    | 0       |
+|   add_ln243_1_fu_1470_p2                                                             |     |        | add_ln243_1        | add | fabric    | 0       |
+|   add_ln243_2_fu_1486_p2                                                             |     |        | add_ln243_2        | add | fabric    | 0       |
+|   add_ln245_fu_1502_p2                                                               |     |        | add_ln245          | add | fabric    | 0       |
+|   add_ln253_1_fu_1538_p2                                                             |     |        | add_ln253_1        | add | fabric    | 0       |
+|   add_ln253_fu_1553_p2                                                               |     |        | add_ln253          | add | fabric    | 0       |
+|   add_ln152_fu_1577_p2                                                               |     |        | add_ln152          | add | fabric    | 0       |
+|   empty_78_fu_1620_p2                                                                |     |        | empty_78           | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_228_1_VITIS_LOOP_228_2_VITIS_LOOP_228_3_VITIS_LOO  | 1   |        |                    |     |           |         |
+|    add_ln228_11_fu_588_p2                                                            |     |        | add_ln228_11       | add | fabric    | 0       |
+|    add_ln228_fu_597_p2                                                               |     |        | add_ln228          | add | fabric    | 0       |
+|    add_ln228_1_fu_692_p2                                                             |     |        | add_ln228_1        | add | fabric    | 0       |
+|    add_ln228_2_fu_742_p2                                                             |     |        | add_ln228_2        | add | fabric    | 0       |
+|    mac_muladd_5ns_5ns_2ns_9_4_1_U1                                                   | 1   |        | mul_ln228          | mul | dsp_slice | 3       |
+|    add_ln228_6_fu_863_p2                                                             |     |        | add_ln228_6        | add | fabric    | 0       |
+|    mac_muladd_5ns_5ns_2ns_9_4_1_U1                                                   | 1   |        | add_ln228_7        | add | dsp_slice | 3       |
+|    add_ln228_5_fu_779_p2                                                             |     |        | add_ln228_5        | add | fabric    | 0       |
+|    add_ln228_9_fu_785_p2                                                             |     |        | add_ln228_9        | add | fabric    | 0       |
+|    add_ln228_10_fu_621_p2                                                            |     |        | add_ln228_10       | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_229_5_VITIS_LOOP_229_6_VITIS_LOOP_229_7_VITIS_LOO  | 0   |        |                    |     |           |         |
+|    add_ln229_15_fu_213_p2                                                            |     |        | add_ln229_15       | add | fabric    | 0       |
+|    add_ln229_fu_267_p2                                                               |     |        | add_ln229          | add | fabric    | 0       |
+|    add_ln229_1_fu_310_p2                                                             |     |        | add_ln229_1        | add | fabric    | 0       |
+|    add_ln229_2_fu_360_p2                                                             |     |        | add_ln229_2        | add | fabric    | 0       |
+|    add_ln229_10_fu_485_p2                                                            |     |        | add_ln229_10       | add | fabric    | 0       |
+|    empty_76_fu_555_p2                                                                |     |        | empty_76           | sub | fabric    | 0       |
+|    add_ln229_3_fu_574_p2                                                             |     |        | add_ln229_3        | add | fabric    | 0       |
+|    add_ln229_4_fu_584_p2                                                             |     |        | add_ln229_4        | add | fabric    | 0       |
+|    add_ln229_6_fu_401_p2                                                             |     |        | add_ln229_6        | add | fabric    | 0       |
+|    add_ln229_13_fu_407_p2                                                            |     |        | add_ln229_13       | add | fabric    | 0       |
+|    add_ln229_14_fu_228_p2                                                            |     |        | add_ln229_14       | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_230_9_VITIS_LOOP_230_10_VITIS_LOOP_230_11_VITIS_L  | 0   |        |                    |     |           |         |
+|    add_ln230_15_fu_215_p2                                                            |     |        | add_ln230_15       | add | fabric    | 0       |
+|    add_ln230_fu_269_p2                                                               |     |        | add_ln230          | add | fabric    | 0       |
+|    add_ln230_1_fu_312_p2                                                             |     |        | add_ln230_1        | add | fabric    | 0       |
+|    add_ln230_2_fu_362_p2                                                             |     |        | add_ln230_2        | add | fabric    | 0       |
+|    add_ln230_10_fu_487_p2                                                            |     |        | add_ln230_10       | add | fabric    | 0       |
+|    empty_74_fu_557_p2                                                                |     |        | empty_74           | sub | fabric    | 0       |
+|    add_ln230_3_fu_576_p2                                                             |     |        | add_ln230_3        | add | fabric    | 0       |
+|    add_ln230_4_fu_586_p2                                                             |     |        | add_ln230_4        | add | fabric    | 0       |
+|    add_ln230_6_fu_403_p2                                                             |     |        | add_ln230_6        | add | fabric    | 0       |
+|    add_ln230_13_fu_409_p2                                                            |     |        | add_ln230_13       | add | fabric    | 0       |
+|    add_ln230_14_fu_230_p2                                                            |     |        | add_ln230_14       | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_231_13_VITIS_LOOP_231_14_VITIS_LOOP_231_15_VITIS_s | 0   |        |                    |     |           |         |
+|    add_ln231_15_fu_209_p2                                                            |     |        | add_ln231_15       | add | fabric    | 0       |
+|    add_ln231_fu_263_p2                                                               |     |        | add_ln231          | add | fabric    | 0       |
+|    add_ln231_1_fu_306_p2                                                             |     |        | add_ln231_1        | add | fabric    | 0       |
+|    add_ln231_2_fu_356_p2                                                             |     |        | add_ln231_2        | add | fabric    | 0       |
+|    add_ln231_10_fu_481_p2                                                            |     |        | add_ln231_10       | add | fabric    | 0       |
+|    empty_72_fu_551_p2                                                                |     |        | empty_72           | sub | fabric    | 0       |
+|    add_ln231_3_fu_570_p2                                                             |     |        | add_ln231_3        | add | fabric    | 0       |
+|    add_ln231_4_fu_580_p2                                                             |     |        | add_ln231_4        | add | fabric    | 0       |
+|    add_ln231_6_fu_397_p2                                                             |     |        | add_ln231_6        | add | fabric    | 0       |
+|    add_ln231_13_fu_403_p2                                                            |     |        | add_ln231_13       | add | fabric    | 0       |
+|    add_ln231_14_fu_224_p2                                                            |     |        | add_ln231_14       | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_232_17_VITIS_LOOP_232_18_VITIS_LOOP_232_19_VITIS_s | 0   |        |                    |     |           |         |
+|    add_ln232_15_fu_213_p2                                                            |     |        | add_ln232_15       | add | fabric    | 0       |
+|    add_ln232_fu_267_p2                                                               |     |        | add_ln232          | add | fabric    | 0       |
+|    add_ln232_1_fu_310_p2                                                             |     |        | add_ln232_1        | add | fabric    | 0       |
+|    add_ln232_2_fu_360_p2                                                             |     |        | add_ln232_2        | add | fabric    | 0       |
+|    add_ln232_10_fu_493_p2                                                            |     |        | add_ln232_10       | add | fabric    | 0       |
+|    empty_70_fu_563_p2                                                                |     |        | empty_70           | sub | fabric    | 0       |
+|    add_ln232_3_fu_582_p2                                                             |     |        | add_ln232_3        | add | fabric    | 0       |
+|    add_ln232_4_fu_592_p2                                                             |     |        | add_ln232_4        | add | fabric    | 0       |
+|    add_ln232_8_fu_425_p2                                                             |     |        | add_ln232_8        | add | fabric    | 0       |
+|    add_ln232_9_fu_621_p2                                                             |     |        | add_ln232_9        | add | fabric    | 0       |
+|    add_ln232_6_fu_431_p2                                                             |     |        | add_ln232_6        | add | fabric    | 0       |
+|    add_ln232_13_fu_437_p2                                                            |     |        | add_ln232_13       | add | fabric    | 0       |
+|    add_ln232_14_fu_228_p2                                                            |     |        | add_ln232_14       | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_234_21_VITIS_LOOP_235_22                           | 0   |        |                    |     |           |         |
+|    add_ln234_1_fu_183_p2                                                             |     |        | add_ln234_1        | add | fabric    | 0       |
+|    add_ln234_fu_195_p2                                                               |     |        | add_ln234          | add | fabric    | 0       |
+|    add_ln236_fu_235_p2                                                               |     |        | add_ln236          | add | fabric    | 0       |
+|    add_ln236_2_fu_275_p2                                                             |     |        | add_ln236_2        | add | fabric    | 0       |
+|    add_ln236_1_fu_305_p2                                                             |     |        | add_ln236_1        | add | fabric    | 0       |
+|    add_ln235_fu_251_p2                                                               |     |        | add_ln235          | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_238_23                                             | 0   |        |                    |     |           |         |
+|    add_ln238_fu_148_p2                                                               |     |        | add_ln238          | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_239_24                                             | 0   |        |                    |     |           |         |
+|    add_ln239_fu_296_p2                                                               |     |        | add_ln239          | add | fabric    | 0       |
+|    add_ln239_1_fu_272_p2                                                             |     |        | add_ln239_1        | add | fabric    | 0       |
+|    add_ln239_2_fu_288_p2                                                             |     |        | add_ln239_2        | add | fabric    | 0       |
+|    add_ln239_3_fu_292_p2                                                             |     |        | add_ln239_3        | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_240_25                                             | 0   |        |                    |     |           |         |
+|    add_ln240_fu_300_p2                                                               |     |        | add_ln240          | add | fabric    | 0       |
+|    add_ln240_1_fu_276_p2                                                             |     |        | add_ln240_1        | add | fabric    | 0       |
+|    add_ln240_2_fu_292_p2                                                             |     |        | add_ln240_2        | add | fabric    | 0       |
+|    add_ln240_3_fu_296_p2                                                             |     |        | add_ln240_3        | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_241_26                                             | 0   |        |                    |     |           |         |
+|    add_ln241_fu_300_p2                                                               |     |        | add_ln241          | add | fabric    | 0       |
+|    add_ln241_1_fu_276_p2                                                             |     |        | add_ln241_1        | add | fabric    | 0       |
+|    add_ln241_2_fu_292_p2                                                             |     |        | add_ln241_2        | add | fabric    | 0       |
+|    add_ln241_3_fu_296_p2                                                             |     |        | add_ln241_3        | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_242_27                                             | 0   |        |                    |     |           |         |
+|    add_ln242_fu_252_p2                                                               |     |        | add_ln242          | add | fabric    | 0       |
+|    add_ln242_1_fu_282_p2                                                             |     |        | add_ln242_1        | add | fabric    | 0       |
+|    add_ln242_2_fu_303_p2                                                             |     |        | add_ln242_2        | add | fabric    | 0       |
+|    add_ln242_3_fu_307_p2                                                             |     |        | add_ln242_3        | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_243_28                                             | 0   |        |                    |     |           |         |
+|    add_ln243_fu_252_p2                                                               |     |        | add_ln243          | add | fabric    | 0       |
+|    add_ln243_1_fu_282_p2                                                             |     |        | add_ln243_1        | add | fabric    | 0       |
+|    add_ln243_2_fu_303_p2                                                             |     |        | add_ln243_2        | add | fabric    | 0       |
+|    add_ln243_3_fu_307_p2                                                             |     |        | add_ln243_3        | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_VITIS_LOOP_245_29                                             | 0   |        |                    |     |           |         |
+|    add_ln245_fu_71_p2                                                                |     |        | add_ln245          | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_LOAD_TILE_VITIS_LOOP_258_30_VITIS_LOOP_259_31                 | 0   |        |                    |     |           |         |
+|    add_ln257_1_fu_636_p2                                                             |     |        | add_ln257_1        | add | fabric    | 0       |
+|    add_ln257_fu_681_p2                                                               |     |        | add_ln257          | add | fabric    | 0       |
+|    add_ln258_fu_718_p2                                                               |     |        | add_ln258          | add | fabric    | 0       |
+|    mul_7ns_9ns_15_1_1_U91                                                            |     |        | mul_ln258          | mul | auto      | 0       |
+|    mul_7ns_9ns_15_1_1_U93                                                            |     |        | mul_ln259          | mul | auto      | 0       |
+|    add_ln260_2_fu_870_p2                                                             |     |        | add_ln260_2        | add | fabric    | 0       |
+|    add_ln261_fu_903_p2                                                               |     |        | add_ln261          | add | fabric    | 0       |
+|    add_ln259_fu_755_p2                                                               |     |        | add_ln259          | add | fabric    | 0       |
+|    add_ln258_1_fu_648_p2                                                             |     |        | add_ln258_1        | add | fabric    | 0       |
+|  + conv3x3_requant_3_16_96_96_s                                                      | 59  |        |                    |     |           |         |
+|    add_ln60_4_fu_3329_p2                                                             |     |        | add_ln60_4         | add | fabric    | 0       |
+|    add_ln60_fu_3338_p2                                                               |     |        | add_ln60           | add | fabric    | 0       |
+|    add_ln6242_fu_3434_p2                                                             |     |        | add_ln6242         | add | fabric    | 0       |
+|    add_ln62_fu_3464_p2                                                               |     |        | add_ln62           | add | fabric    | 0       |
+|    add_ln62_4_fu_3483_p2                                                             |     |        | add_ln62_4         | add | fabric    | 0       |
+|    sub_i_i_i_fu_4962_p2                                                              |     |        | sub_i_i_i          | add | fabric    | 0       |
+|    sub_i_i_i74_i_fu_4968_p2                                                          |     |        | sub_i_i_i74_i      | sub | fabric    | 0       |
+|    sub_i_i_i_i_fu_5004_p2                                                            |     |        | sub_i_i_i_i        | sub | fabric    | 0       |
+|    mul_7ns_9ns_15_1_1_U160                                                           |     |        | mul_ln62           | mul | auto      | 0       |
+|    add_ln65_fu_3527_p2                                                               |     |        | add_ln65           | add | fabric    | 0       |
+|    mul_7ns_9ns_15_1_1_U161                                                           |     |        | mul_ln65           | mul | auto      | 0       |
+|    add_ln83_fu_3721_p2                                                               |     |        | add_ln83           | add | fabric    | 0       |
+|    empty_87_fu_3583_p2                                                               |     |        | empty_87           | add | fabric    | 0       |
+|    mul_64ns_66ns_125_5_1_U128                                                        | 16  |        | mul_ln65_1         | mul | auto      | 4       |
+|    add_ln83_4_fu_3765_p2                                                             |     |        | add_ln83_4         | add | fabric    | 0       |
+|    add_ln74_fu_3589_p2                                                               |     |        | add_ln74           | add | fabric    | 0       |
+|    mul_64ns_66ns_129_5_1_U129                                                        | 16  |        | mul_ln79           | mul | auto      | 4       |
+|    add_ln83_5_fu_3802_p2                                                             |     |        | add_ln83_5         | add | fabric    | 0       |
+|    add_ln83_6_fu_3838_p2                                                             |     |        | add_ln83_6         | add | fabric    | 0       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U190                                                 | 1   |        | mul_ln82           | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U190                                                 | 1   |        | acc_10             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U191                                                 | 1   |        | mul_ln82_1         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U191                                                 | 1   |        | acc_12             | add | dsp_slice | 3       |
+|    mul_7ns_9ns_15_1_1_U162                                                           |     |        | mul_ln79_1         | mul | auto      | 0       |
+|    add_ln83_7_fu_3877_p2                                                             |     |        | add_ln83_7         | add | fabric    | 0       |
+|    add_ln83_8_fu_3914_p2                                                             |     |        | add_ln83_8         | add | fabric    | 0       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U192                                                 | 1   |        | mul_ln82_2         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U192                                                 | 1   |        | acc_14             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U193                                                 | 1   |        | mul_ln82_3         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U193                                                 | 1   |        | acc_16             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U194                                                 | 1   |        | mul_ln82_4         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U194                                                 | 1   |        | acc_18             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U195                                                 | 1   |        | mul_ln82_5         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U195                                                 | 1   |        | acc_19             | add | dsp_slice | 3       |
+|    mul_7ns_9ns_15_1_1_U159                                                           |     |        | mul_ln65_2         | mul | auto      | 0       |
+|    add_ln83_9_fu_3958_p2                                                             |     |        | add_ln83_9         | add | fabric    | 0       |
+|    add_ln83_10_fu_3994_p2                                                            |     |        | add_ln83_10        | add | fabric    | 0       |
+|    add_ln83_11_fu_4031_p2                                                            |     |        | add_ln83_11        | add | fabric    | 0       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U196                                                 | 1   |        | mul_ln82_6         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U196                                                 | 1   |        | acc_21             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U197                                                 | 1   |        | mul_ln82_7         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U197                                                 | 1   |        | acc_23             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U198                                                 | 1   |        | mul_ln82_8         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U198                                                 | 1   |        | acc_25             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U199                                                 | 1   |        | mul_ln82_9         | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U199                                                 | 1   |        | acc_27             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U200                                                 | 1   |        | mul_ln82_10        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U200                                                 | 1   |        | acc_29             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U201                                                 | 1   |        | mul_ln82_11        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U201                                                 | 1   |        | acc_31             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U202                                                 | 1   |        | mul_ln82_12        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U202                                                 | 1   |        | acc_33             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U203                                                 | 1   |        | mul_ln82_13        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U203                                                 | 1   |        | acc_35             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U204                                                 | 1   |        | mul_ln82_14        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U204                                                 | 1   |        | acc_36             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U205                                                 | 1   |        | mul_ln82_15        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U205                                                 | 1   |        | acc_38             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U206                                                 | 1   |        | mul_ln82_16        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U206                                                 | 1   |        | acc_40             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U207                                                 | 1   |        | mul_ln82_17        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U207                                                 | 1   |        | acc_42             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U208                                                 | 1   |        | mul_ln82_18        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U208                                                 | 1   |        | acc_44             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U209                                                 | 1   |        | mul_ln82_19        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U209                                                 | 1   |        | acc_46             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U210                                                 | 1   |        | mul_ln82_20        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U210                                                 | 1   |        | acc_48             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U211                                                 | 1   |        | mul_ln82_21        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U211                                                 | 1   |        | acc_50             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U212                                                 | 1   |        | mul_ln82_22        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U212                                                 | 1   |        | acc_52             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U213                                                 | 1   |        | mul_ln82_23        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U213                                                 | 1   |        | acc_53             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U214                                                 | 1   |        | mul_ln82_24        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U214                                                 | 1   |        | acc_55             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U215                                                 | 1   |        | mul_ln82_25        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U215                                                 | 1   |        | acc_57             | add | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U216                                                 | 1   |        | mul_ln82_26        | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U216                                                 | 1   |        | acc_59             | add | dsp_slice | 3       |
+|    add_ln34_fu_5029_p2                                                               |     |        | add_ln34           | add | fabric    | 0       |
+|    add_ln62_5_fu_3392_p2                                                             |     |        | add_ln62_5         | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL                                      | 0   |        |                    |     |           |         |
+|    add_ln100_3_fu_189_p2                                                             |     |        | add_ln100_3        | add | fabric    | 0       |
+|    add_ln100_fu_207_p2                                                               |     |        | add_ln100          | add | fabric    | 0       |
+|    add_ln102_fu_253_p2                                                               |     |        | add_ln102          | add | fabric    | 0       |
+|    sub_ln105_1_fu_383_p2                                                             |     |        | sub_ln105_1        | sub | fabric    | 0       |
+|    add_ln105_1_fu_431_p2                                                             |     |        | add_ln105_1        | add | fabric    | 0       |
+|    add_ln106_fu_447_p2                                                               |     |        | add_ln106          | add | fabric    | 0       |
+|    add_ln104_fu_281_p2                                                               |     |        | add_ln104          | add | fabric    | 0       |
+|    add_ln102_3_fu_287_p2                                                             |     |        | add_ln102_3        | add | fabric    | 0       |
+|  + conv3x3_requant_16_32_48_48_s                                                     | 1   |        |                    |     |           |         |
+|    sub_i_i_i_fu_277_p2                                                               |     |        | sub_i_i_i          | add | fabric    | 0       |
+|    sub_i_i_i74_i_fu_291_p2                                                           |     |        | sub_i_i_i74_i      | sub | fabric    | 0       |
+|    add_ln60_5_fu_349_p2                                                              |     |        | add_ln60_5         | add | fabric    | 0       |
+|    add_ln60_fu_355_p2                                                                |     |        | add_ln60           | add | fabric    | 0       |
+|    sub_i_i_i_mid1_fu_501_p2                                                          |     |        | sub_i_i_i_mid1     | add | fabric    | 0       |
+|    sub_i_i_i74_i_mid1_fu_507_p2                                                      |     |        | sub_i_i_i74_i_mid1 | sub | fabric    | 0       |
+|    sub_ln60_fu_543_p2                                                                |     |        | sub_ln60           | sub | fabric    | 0       |
+|    add_ln62_fu_423_p2                                                                |     |        | add_ln62           | add | fabric    | 0       |
+|    add_ln34_fu_576_p2                                                                |     |        | add_ln34           | add | fabric    | 0       |
+|    add_ln64_fu_746_p2                                                                |     |        | add_ln64           | add | fabric    | 0       |
+|    add_ln62_6_fu_751_p2                                                              |     |        | add_ln62_6         | add | fabric    | 0       |
+|   + conv3x3_requant_16_32_48_48_Pipeline_CONV_IC_CONV_KH_CONV_KW                     | 1   |        |                    |     |           |         |
+|     add_ln68_4_fu_214_p2                                                             |     |        | add_ln68_4         | add | fabric    | 0       |
+|     add_ln68_fu_232_p2                                                               |     |        | add_ln68           | add | fabric    | 0       |
+|     add_ln70_fu_278_p2                                                               |     |        | add_ln70           | add | fabric    | 0       |
+|     add_ln82_fu_360_p2                                                               |     |        | add_ln82           | add | fabric    | 0       |
+|     tmp_fu_306_p2                                                                    |     |        | tmp                | add | fabric    | 0       |
+|     empty_fu_435_p2                                                                  |     |        | empty              | add | fabric    | 0       |
+|     add_ln74_fu_485_p2                                                               |     |        | add_ln74           | add | fabric    | 0       |
+|     add_ln74_4_fu_494_p2                                                             |     |        | add_ln74_4         | add | fabric    | 0       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U285                                                | 1   |        | mul_ln82           | mul | dsp_slice | 3       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U285                                                | 1   |        | acc_61             | add | dsp_slice | 3       |
+|     add_ln72_fu_312_p2                                                               |     |        | add_ln72           | add | fabric    | 0       |
+|     add_ln70_4_fu_318_p2                                                             |     |        | add_ln70_4         | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL1                                     | 0   |        |                    |     |           |         |
+|    add_ln100_fu_187_p2                                                               |     |        | add_ln100          | add | fabric    | 0       |
+|    add_ln100_1_fu_205_p2                                                             |     |        | add_ln100_1        | add | fabric    | 0       |
+|    add_ln102_1_fu_251_p2                                                             |     |        | add_ln102_1        | add | fabric    | 0       |
+|    sub_ln105_fu_381_p2                                                               |     |        | sub_ln105          | sub | fabric    | 0       |
+|    add_ln105_fu_429_p2                                                               |     |        | add_ln105          | add | fabric    | 0       |
+|    add_ln106_fu_445_p2                                                               |     |        | add_ln106          | add | fabric    | 0       |
+|    add_ln104_fu_279_p2                                                               |     |        | add_ln104          | add | fabric    | 0       |
+|    add_ln102_fu_285_p2                                                               |     |        | add_ln102          | add | fabric    | 0       |
+|  + conv3x3_requant_32_64_24_24_s                                                     | 1   |        |                    |     |           |         |
+|    sub_i_i_i_fu_281_p2                                                               |     |        | sub_i_i_i          | add | fabric    | 0       |
+|    sub_i_i_i74_i_fu_295_p2                                                           |     |        | sub_i_i_i74_i      | sub | fabric    | 0       |
+|    add_ln60_3_fu_353_p2                                                              |     |        | add_ln60_3         | add | fabric    | 0       |
+|    add_ln60_fu_359_p2                                                                |     |        | add_ln60           | add | fabric    | 0       |
+|    sub_i_i_i_mid1_fu_505_p2                                                          |     |        | sub_i_i_i_mid1     | add | fabric    | 0       |
+|    sub_i_i_i74_i_mid1_fu_511_p2                                                      |     |        | sub_i_i_i74_i_mid1 | sub | fabric    | 0       |
+|    sub_ln60_fu_547_p2                                                                |     |        | sub_ln60           | sub | fabric    | 0       |
+|    add_ln62_fu_427_p2                                                                |     |        | add_ln62           | add | fabric    | 0       |
+|    add_ln34_fu_580_p2                                                                |     |        | add_ln34           | add | fabric    | 0       |
+|    add_ln64_fu_750_p2                                                                |     |        | add_ln64           | add | fabric    | 0       |
+|    add_ln62_3_fu_755_p2                                                              |     |        | add_ln62_3         | add | fabric    | 0       |
+|   + conv3x3_requant_32_64_24_24_Pipeline_CONV_IC_CONV_KH_CONV_KW                     | 1   |        |                    |     |           |         |
+|     add_ln68_3_fu_216_p2                                                             |     |        | add_ln68_3         | add | fabric    | 0       |
+|     add_ln68_fu_234_p2                                                               |     |        | add_ln68           | add | fabric    | 0       |
+|     add_ln70_fu_280_p2                                                               |     |        | add_ln70           | add | fabric    | 0       |
+|     add_ln82_fu_362_p2                                                               |     |        | add_ln82           | add | fabric    | 0       |
+|     tmp_fu_308_p2                                                                    |     |        | tmp                | add | fabric    | 0       |
+|     empty_fu_437_p2                                                                  |     |        | empty              | add | fabric    | 0       |
+|     add_ln74_fu_487_p2                                                               |     |        | add_ln74           | add | fabric    | 0       |
+|     add_ln74_3_fu_496_p2                                                             |     |        | add_ln74_3         | add | fabric    | 0       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U304                                                | 1   |        | mul_ln82           | mul | dsp_slice | 3       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U304                                                | 1   |        | acc_9              | add | dsp_slice | 3       |
+|     add_ln72_fu_314_p2                                                               |     |        | add_ln72           | add | fabric    | 0       |
+|     add_ln70_3_fu_320_p2                                                             |     |        | add_ln70_3         | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL2                                     | 0   |        |                    |     |           |         |
+|    add_ln100_fu_191_p2                                                               |     |        | add_ln100          | add | fabric    | 0       |
+|    add_ln100_2_fu_239_p2                                                             |     |        | add_ln100_2        | add | fabric    | 0       |
+|    add_ln102_fu_276_p2                                                               |     |        | add_ln102          | add | fabric    | 0       |
+|    sub_ln105_2_fu_381_p2                                                             |     |        | sub_ln105_2        | sub | fabric    | 0       |
+|    add_ln105_2_fu_429_p2                                                             |     |        | add_ln105_2        | add | fabric    | 0       |
+|    add_ln106_fu_445_p2                                                               |     |        | add_ln106          | add | fabric    | 0       |
+|    add_ln104_fu_303_p2                                                               |     |        | add_ln104          | add | fabric    | 0       |
+|    add_ln102_2_fu_206_p2                                                             |     |        | add_ln102_2        | add | fabric    | 0       |
+|  + conv3x3_requant_64_64_12_12_s                                                     | 1   |        |                    |     |           |         |
+|    sub_i_i_i_fu_281_p2                                                               |     |        | sub_i_i_i          | add | fabric    | 0       |
+|    sub_i_i_i74_i_fu_295_p2                                                           |     |        | sub_i_i_i74_i      | sub | fabric    | 0       |
+|    add_ln60_1_fu_353_p2                                                              |     |        | add_ln60_1         | add | fabric    | 0       |
+|    add_ln60_fu_359_p2                                                                |     |        | add_ln60           | add | fabric    | 0       |
+|    sub_i_i_i_mid1_fu_505_p2                                                          |     |        | sub_i_i_i_mid1     | add | fabric    | 0       |
+|    sub_i_i_i74_i_mid1_fu_511_p2                                                      |     |        | sub_i_i_i74_i_mid1 | sub | fabric    | 0       |
+|    sub_ln60_fu_547_p2                                                                |     |        | sub_ln60           | sub | fabric    | 0       |
+|    add_ln62_fu_427_p2                                                                |     |        | add_ln62           | add | fabric    | 0       |
+|    add_ln34_fu_580_p2                                                                |     |        | add_ln34           | add | fabric    | 0       |
+|    add_ln64_fu_750_p2                                                                |     |        | add_ln64           | add | fabric    | 0       |
+|    add_ln62_1_fu_755_p2                                                              |     |        | add_ln62_1         | add | fabric    | 0       |
+|   + conv3x3_requant_64_64_12_12_Pipeline_CONV_IC_CONV_KH_CONV_KW                     | 1   |        |                    |     |           |         |
+|     add_ln68_1_fu_212_p2                                                             |     |        | add_ln68_1         | add | fabric    | 0       |
+|     add_ln68_fu_230_p2                                                               |     |        | add_ln68           | add | fabric    | 0       |
+|     add_ln70_fu_276_p2                                                               |     |        | add_ln70           | add | fabric    | 0       |
+|     add_ln82_fu_358_p2                                                               |     |        | add_ln82           | add | fabric    | 0       |
+|     tmp_fu_304_p2                                                                    |     |        | tmp                | add | fabric    | 0       |
+|     empty_fu_433_p2                                                                  |     |        | empty              | add | fabric    | 0       |
+|     add_ln74_fu_483_p2                                                               |     |        | add_ln74           | add | fabric    | 0       |
+|     add_ln74_1_fu_492_p2                                                             |     |        | add_ln74_1         | add | fabric    | 0       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U323                                                | 1   |        | mul_ln82           | mul | dsp_slice | 3       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U323                                                | 1   |        | acc_5              | add | dsp_slice | 3       |
+|     add_ln72_fu_310_p2                                                               |     |        | add_ln72           | add | fabric    | 0       |
+|     add_ln70_1_fu_316_p2                                                             |     |        | add_ln70_1         | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_POOL_C_POOL_ROW_POOL_COL3                                     | 0   |        |                    |     |           |         |
+|    add_ln100_fu_189_p2                                                               |     |        | add_ln100          | add | fabric    | 0       |
+|    add_ln100_1_fu_207_p2                                                             |     |        | add_ln100_1        | add | fabric    | 0       |
+|    add_ln102_fu_253_p2                                                               |     |        | add_ln102          | add | fabric    | 0       |
+|    sub_ln105_1_fu_383_p2                                                             |     |        | sub_ln105_1        | sub | fabric    | 0       |
+|    add_ln105_1_fu_431_p2                                                             |     |        | add_ln105_1        | add | fabric    | 0       |
+|    add_ln106_fu_447_p2                                                               |     |        | add_ln106          | add | fabric    | 0       |
+|    add_ln104_fu_281_p2                                                               |     |        | add_ln104          | add | fabric    | 0       |
+|    add_ln102_1_fu_287_p2                                                             |     |        | add_ln102_1        | add | fabric    | 0       |
+|  + conv3x3_requant_64_128_6_6_s                                                      | 1   |        |                    |     |           |         |
+|    sub_i_i_i_fu_780_p2                                                               |     |        | sub_i_i_i          | add | fabric    | 0       |
+|    grp_fu_726_p2                                                                     |     |        | sub_i_i_i74_i      | sub | fabric    | 0       |
+|    add_ln60_2_fu_832_p2                                                              |     |        | add_ln60_2         | add | fabric    | 0       |
+|    add_ln60_fu_838_p2                                                                |     |        | add_ln60           | add | fabric    | 0       |
+|    sub_i_i_i_mid1_fu_948_p2                                                          |     |        | sub_i_i_i_mid1     | add | fabric    | 0       |
+|    grp_fu_726_p2                                                                     |     |        | sub_i_i_i74_i_mid1 | sub | fabric    | 0       |
+|    sub_ln60_fu_985_p2                                                                |     |        | sub_ln60           | sub | fabric    | 0       |
+|    add_ln62_fu_899_p2                                                                |     |        | add_ln62           | add | fabric    | 0       |
+|    add_ln34_fu_1016_p2                                                               |     |        | add_ln34           | add | fabric    | 0       |
+|    add_ln64_fu_1146_p2                                                               |     |        | add_ln64           | add | fabric    | 0       |
+|    add_ln62_2_fu_1151_p2                                                             |     |        | add_ln62_2         | add | fabric    | 0       |
+|   + conv3x3_requant_64_128_6_6_Pipeline_CONV_IC_CONV_KH_CONV_KW                      | 1   |        |                    |     |           |         |
+|     add_ln68_2_fu_216_p2                                                             |     |        | add_ln68_2         | add | fabric    | 0       |
+|     add_ln68_fu_234_p2                                                               |     |        | add_ln68           | add | fabric    | 0       |
+|     add_ln70_fu_280_p2                                                               |     |        | add_ln70           | add | fabric    | 0       |
+|     add_ln82_fu_362_p2                                                               |     |        | add_ln82           | add | fabric    | 0       |
+|     tmp_fu_308_p2                                                                    |     |        | tmp                | add | fabric    | 0       |
+|     empty_fu_437_p2                                                                  |     |        | empty              | add | fabric    | 0       |
+|     add_ln74_fu_487_p2                                                               |     |        | add_ln74           | add | fabric    | 0       |
+|     add_ln74_2_fu_496_p2                                                             |     |        | add_ln74_2         | add | fabric    | 0       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U342                                                | 1   |        | mul_ln82           | mul | dsp_slice | 3       |
+|     mac_muladd_8ns_8s_32s_32_4_1_U342                                                | 1   |        | acc_7              | add | dsp_slice | 3       |
+|     add_ln72_fu_314_p2                                                               |     |        | add_ln72           | add | fabric    | 0       |
+|     add_ln70_2_fu_320_p2                                                             |     |        | add_ln70_2         | add | fabric    | 0       |
+|  + pcam_infer_Pipeline_GAP_C                                                         | 0   |        |                    |     |           |         |
+|    add_ln130_fu_674_p2                                                               |     |        | add_ln130          | add | fabric    | 0       |
+|    add_ln136_fu_857_p2                                                               |     |        | add_ln136          | add | fabric    | 0       |
+|    add_ln136_1_fu_863_p2                                                             |     |        | add_ln136_1        | add | fabric    | 0       |
+|    add_ln136_3_fu_869_p2                                                             |     |        | add_ln136_3        | add | fabric    | 0       |
+|    add_ln136_4_fu_875_p2                                                             |     |        | add_ln136_4        | add | fabric    | 0       |
+|    add_ln136_5_fu_885_p2                                                             |     |        | add_ln136_5        | add | fabric    | 0       |
+|    add_ln136_6_fu_1066_p2                                                            |     |        | add_ln136_6        | add | fabric    | 0       |
+|    add_ln136_8_fu_891_p2                                                             |     |        | add_ln136_8        | add | fabric    | 0       |
+|    add_ln136_9_fu_901_p2                                                             |     |        | add_ln136_9        | add | fabric    | 0       |
+|    add_ln136_10_fu_911_p2                                                            |     |        | add_ln136_10       | add | fabric    | 0       |
+|    add_ln136_11_fu_917_p2                                                            |     |        | add_ln136_11       | add | fabric    | 0       |
+|    add_ln136_12_fu_923_p2                                                            |     |        | add_ln136_12       | add | fabric    | 0       |
+|    add_ln136_13_fu_933_p2                                                            |     |        | add_ln136_13       | add | fabric    | 0       |
+|    add_ln136_14_fu_1091_p2                                                           |     |        | add_ln136_14       | add | fabric    | 0       |
+|    add_ln136_15_fu_1101_p2                                                           |     |        | add_ln136_15       | add | fabric    | 0       |
+|    add_ln136_17_fu_939_p2                                                            |     |        | add_ln136_17       | add | fabric    | 0       |
+|    add_ln136_18_fu_949_p2                                                            |     |        | add_ln136_18       | add | fabric    | 0       |
+|    add_ln136_19_fu_959_p2                                                            |     |        | add_ln136_19       | add | fabric    | 0       |
+|    add_ln136_20_fu_965_p2                                                            |     |        | add_ln136_20       | add | fabric    | 0       |
+|    add_ln136_21_fu_719_p2                                                            |     |        | add_ln136_21       | add | fabric    | 0       |
+|    add_ln136_22_fu_978_p2                                                            |     |        | add_ln136_22       | add | fabric    | 0       |
+|    add_ln136_23_fu_988_p2                                                            |     |        | add_ln136_23       | add | fabric    | 0       |
+|    add_ln136_24_fu_1123_p2                                                           |     |        | add_ln136_24       | add | fabric    | 0       |
+|    add_ln136_25_fu_994_p2                                                            |     |        | add_ln136_25       | add | fabric    | 0       |
+|    add_ln136_26_fu_725_p2                                                            |     |        | add_ln136_26       | add | fabric    | 0       |
+|    add_ln136_27_fu_1007_p2                                                           |     |        | add_ln136_27       | add | fabric    | 0       |
+|    add_ln136_28_fu_1017_p2                                                           |     |        | add_ln136_28       | add | fabric    | 0       |
+|    add_ln136_29_fu_1023_p2                                                           |     |        | add_ln136_29       | add | fabric    | 0       |
+|    add_ln136_30_fu_731_p2                                                            |     |        | add_ln136_30       | add | fabric    | 0       |
+|    add_ln136_31_fu_1036_p2                                                           |     |        | add_ln136_31       | add | fabric    | 0       |
+|    add_ln136_32_fu_1046_p2                                                           |     |        | add_ln136_32       | add | fabric    | 0       |
+|    add_ln136_33_fu_1139_p2                                                           |     |        | add_ln136_33       | add | fabric    | 0       |
+|    add_ln136_34_fu_1149_p2                                                           |     |        | add_ln136_34       | add | fabric    | 0       |
+|    add_ln33_fu_1184_p2                                                               |     |        | add_ln33           | add | fabric    | 0       |
+|    sub_ln33_fu_1190_p2                                                               |     |        | sub_ln33           | sub | fabric    | 0       |
+|    add_ln34_fu_1239_p2                                                               |     |        | add_ln34           | add | fabric    | 0       |
+|    sub_ln34_fu_1245_p2                                                               |     |        | sub_ln34           | sub | fabric    | 0       |
+|  + pcam_infer_Pipeline_FC_IC                                                         | 1   |        |                    |     |           |         |
+|    add_ln155_fu_114_p2                                                               |     |        | add_ln155          | add | fabric    | 0       |
+|    add_ln156_fu_125_p2                                                               |     |        | add_ln156          | add | fabric    | 0       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U433                                                 | 1   |        | mul_ln156          | mul | dsp_slice | 3       |
+|    mac_muladd_8ns_8s_32s_32_4_1_U433                                                 | 1   |        | acc_3              | add | dsp_slice | 3       |
+|  + pcam_infer_Pipeline_STORE_SCORES                                                  | 0   |        |                    |     |           |         |
+|    add_ln281_fu_90_p2                                                                |     |        | add_ln281          | add | fabric    | 0       |
++--------------------------------------------------------------------------------------+-----+--------+--------------------+-----+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++---------------------------------+-----------+-----------+------+------+--------+-----------------------------+------+---------+------------------+
+| Name                            | Usage     | Type      | BRAM | URAM | Pragma | Variable                    | Impl | Latency | Bitwidth, Depth, |
+|                                 |           |           |      |      |        |                             |      |         | Banks            |
++---------------------------------+-----------+-----------+------+------+--------+-----------------------------+------+---------+------------------+
+| + pcam_infer                    |           |           | 292  | 0    |        |                             |      |         |                  |
+|   control_s_axi_U               | interface | s_axilite |      |      |        |                             |      |         |                  |
+|   gmem_m_axi_U                  | interface | m_axi     | 30   |      |        |                             |      |         |                  |
+|   p_ZZ10pcam_inferE3c1w_0_0_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_0_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_0_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_0_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_0_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_0_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_1_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_1_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_1_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_1_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_1_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_1_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_2_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_2_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_2_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_2_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_0_2_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_0_2_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_0_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_0_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_0_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_0_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_0_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_0_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_1_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_1_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_1_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_1_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_1_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_1_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_2_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_2_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_2_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_2_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_1_2_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_1_2_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_0_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_0_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_0_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_0_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_0_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_0_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_1_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_1_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_1_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_1_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_1_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_1_2 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_2_0_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_2_0 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_2_1_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_2_1 | auto | 1       | 8, 16, 1         |
+|   p_ZZ10pcam_inferE3c1w_2_2_2_U | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE3c1w_2_2_2 | auto | 1       | 8, 16, 1         |
+|   c2w_U                         | ram_1p    |           | 4    |      |        | c2w                         | auto | 1       | 8, 4608, 1       |
+|   c3w_U                         | ram_1p    |           | 9    |      |        | c3w                         | auto | 1       | 8, 18432, 1      |
+|   c4w_U                         | ram_1p    |           | 18   |      |        | c4w                         | auto | 1       | 8, 36864, 1      |
+|   c5w_U                         | ram_1p    |           | 36   |      |        | c5w                         | auto | 1       | 8, 73728, 1      |
+|   fcw_U                         | ram_1p    |           |      |      |        | fcw                         | auto | 1       | 8, 256, 1        |
+|   c1b_U                         | ram_1p    |           |      |      |        | c1b                         | auto | 1       | 32, 16, 1        |
+|   c1m_U                         | ram_1p    |           |      |      |        | c1m                         | auto | 1       | 32, 16, 1        |
+|   c1s_U                         | ram_1p    |           |      |      |        | c1s                         | auto | 1       | 32, 16, 1        |
+|   c2s_U                         | ram_1p    |           |      |      |        | c2s                         | auto | 1       | 32, 32, 1        |
+|   c2b_U                         | ram_1p    |           |      |      |        | c2b                         | auto | 1       | 32, 32, 1        |
+|   c2m_U                         | ram_1p    |           |      |      |        | c2m                         | auto | 1       | 32, 32, 1        |
+|   c3s_U                         | ram_1p    |           |      |      |        | c3s                         | auto | 1       | 32, 64, 1        |
+|   c3b_U                         | ram_1p    |           |      |      |        | c3b                         | auto | 1       | 32, 64, 1        |
+|   c3m_U                         | ram_1p    |           |      |      |        | c3m                         | auto | 1       | 32, 64, 1        |
+|   c4s_U                         | ram_1p    |           |      |      |        | c4s                         | auto | 1       | 32, 64, 1        |
+|   c4b_U                         | ram_1p    |           |      |      |        | c4b                         | auto | 1       | 32, 64, 1        |
+|   c4m_U                         | ram_1p    |           |      |      |        | c4m                         | auto | 1       | 32, 64, 1        |
+|   c5s_U                         | ram_1p    |           |      |      |        | c5s                         | auto | 1       | 32, 128, 1       |
+|   c5b_U                         | ram_1p    |           |      |      |        | c5b                         | auto | 1       | 32, 128, 1       |
+|   c5m_U                         | ram_1p    |           |      |      |        | c5m                         | auto | 1       | 32, 128, 1       |
+|   gps_U                         | ram_1p    |           |      |      |        | gps                         | auto | 1       | 32, 128, 1       |
+|   gpb_U                         | ram_1p    |           |      |      |        | gpb                         | auto | 1       | 32, 128, 1       |
+|   gpm_U                         | ram_1p    |           |      |      |        | gpm                         | auto | 1       | 32, 128, 1       |
+|   p_ZZ10pcam_inferE2x0_0_0_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_0_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_0_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_0_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_0_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_0_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_1_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_1_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_1_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_1_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_1_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_1_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_2_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_2_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_2_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_2_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_0_2_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_0_2_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_0_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_0_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_0_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_0_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_0_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_0_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_1_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_1_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_1_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_1_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_1_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_1_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_2_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_2_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_2_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_2_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_1_2_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_1_2_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_0_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_0_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_0_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_0_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_0_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_0_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_1_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_1_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_1_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_1_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_1_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_1_2  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_2_0_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_2_0  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_2_1_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_2_1  | auto | 1       | 8, 1024, 1       |
+|   p_ZZ10pcam_inferE2x0_2_2_2_U  | ram_1p    |           | 1    |      |        | p_ZZ10pcam_inferE2x0_2_2_2  | auto | 1       | 8, 1024, 1       |
+|   a1_U                          | ram_s2p   |           | 36   |      |        | a1                          | auto | 1       | 8, 73728, 1      |
+|   a1_1_U                        | ram_s2p   |           | 36   |      |        | a1_1                        | auto | 1       | 8, 73728, 1      |
+|   p1_U                          | ram_1p    |           | 18   |      |        | p1                          | auto | 1       | 8, 36864, 1      |
+|   a2_U                          | ram_s2p   |           | 18   |      |        | a2                          | auto | 1       | 8, 36864, 1      |
+|   a2_2_U                        | ram_s2p   |           | 18   |      |        | a2_2                        | auto | 1       | 8, 36864, 1      |
+|   p2_U                          | ram_1p    |           | 9    |      |        | p2                          | auto | 1       | 8, 18432, 1      |
+|   a3_U                          | ram_s2p   |           | 9    |      |        | a3                          | auto | 1       | 8, 18432, 1      |
+|   a3_3_U                        | ram_s2p   |           | 9    |      |        | a3_3                        | auto | 1       | 8, 18432, 1      |
+|   p3_U                          | ram_1p    |           | 5    |      |        | p3                          | auto | 1       | 8, 9216, 1       |
+|   a4_U                          | ram_s2p   |           | 4    |      |        | a4                          | auto | 1       | 8, 4608, 1       |
+|   a4_4_U                        | ram_s2p   |           | 4    |      |        | a4_4                        | auto | 1       | 8, 4608, 1       |
+|   p4_U                          | ram_1p    |           | 2    |      |        | p4                          | auto | 1       | 8, 2304, 1       |
+|   p_ZZ10pcam_inferE2a5_0_0_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_0_0    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_0_1_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_0_1    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_0_2_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_0_2    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_0_3_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_0_3    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_0_4_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_0_4    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_0_5_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_0_5    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_1_0_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_1_0    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_1_1_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_1_1    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_1_2_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_1_2    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_1_3_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_1_3    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_1_4_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_1_4    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_1_5_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_1_5    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_2_0_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_2_0    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_2_1_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_2_1    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_2_2_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_2_2    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_2_3_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_2_3    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_2_4_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_2_4    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_2_5_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_2_5    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_3_0_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_3_0    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_3_1_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_3_1    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_3_2_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_3_2    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_3_3_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_3_3    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_3_4_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_3_4    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_3_5_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_3_5    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_4_0_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_4_0    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_4_1_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_4_1    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_4_2_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_4_2    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_4_3_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_4_3    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_4_4_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_4_4    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_4_5_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_4_5    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_5_0_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_5_0    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_5_1_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_5_1    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_5_2_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_5_2    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_5_3_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_5_3    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_5_4_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_5_4    | auto | 1       | 8, 128, 1        |
+|   p_ZZ10pcam_inferE2a5_5_5_U    | ram_1p    |           |      |      |        | p_ZZ10pcam_inferE2a5_5_5    | auto | 1       | 8, 128, 1        |
+|   g_U                           | ram_1p    |           |      |      |        | g                           | auto | 1       | 8, 128, 1        |
++---------------------------------+-----------+-----------+------+------+--------+-----------------------------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

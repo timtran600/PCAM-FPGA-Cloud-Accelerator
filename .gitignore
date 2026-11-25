@@ -18,3 +18,19 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .venv/
+
+# HLS build products
+*_prj/
+tb_native.exe
+
+# Unified Vitis workspace: track only each component's hls_config.cfg and
+# vitis-comp.json (plus the tool-written .gitignore files). Everything
+# below a component (its work_dir build output) and the workspace's
+# runtime state is ignored.
+phase2_hls/workspace/*/*/
+phase2_hls/workspace/logs/
+phase2_hls/workspace/.lock
+phase2_hls/workspace/.peers.ini
+phase2_hls/workspace/_ide/
+phase2_hls/workspace/.metadata/
+phase2_hls/workspace/*/compile_commands.json

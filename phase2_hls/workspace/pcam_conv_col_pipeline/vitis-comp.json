@@ -1,0 +1,12 @@
+{
+  "name": "pcam_conv_col_pipeline",
+  "type": "HLS",
+  "configuration": {
+    "componentType": "HLS",
+    "configFiles": [
+      "hls_config.cfg"
+    ],
+    "work_dir": "pcam_conv_col_pipeline"
+  },
+  "previousBuildStatusMap": {}
+}

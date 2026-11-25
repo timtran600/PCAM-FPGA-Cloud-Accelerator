@@ -72,6 +72,7 @@ the kernel. Both come from one array set so they cannot diverge.
 
     python phase1_software/golden.py --self-test
     python phase1_software/golden.py --artifacts ./artifacts --split test
+    python phase1_software/golden.py --artifacts ./artifacts --split test --dump-layers 8
 """
 
 import argparse
@@ -210,6 +211,8 @@ def forward_tile(tile_u8, params, dump=None):
                 dump[f"{name}_pool"] = x
 
     s = global_sum(x)
+    if dump is not None:
+        dump["gap_acc"] = s + params["gap_bias"]
     x = requantize(s + params["gap_bias"], params["gap_m0"], params["gap_shift"])
     if dump is not None:
         dump["gap"] = x
@@ -358,6 +361,183 @@ def run_split(artifacts_dir, data_root, split, limit):
     return scores
 
 
+# (name, dtype, C, H, W) in file and manifest order.
+DUMP_STAGES = [
+    ("input",      np.uint8,   3, 96, 96),
+    ("conv1_acc",  np.int32,  16, 96, 96),
+    ("conv1",      np.uint8,  16, 96, 96),
+    ("conv1_pool", np.uint8,  16, 48, 48),
+    ("conv2_acc",  np.int32,  32, 48, 48),
+    ("conv2",      np.uint8,  32, 48, 48),
+    ("conv2_pool", np.uint8,  32, 24, 24),
+    ("conv3_acc",  np.int32,  64, 24, 24),
+    ("conv3",      np.uint8,  64, 24, 24),
+    ("conv3_pool", np.uint8,  64, 12, 12),
+    ("conv4_acc",  np.int32,  64, 12, 12),
+    ("conv4",      np.uint8,  64, 12, 12),
+    ("conv4_pool", np.uint8,  64,  6,  6),
+    ("conv5_acc",  np.int32, 128,  6,  6),
+    ("conv5",      np.uint8, 128,  6,  6),
+    ("gap_acc",    np.int32, 128,  1,  1),
+    ("gap",        np.uint8, 128,  1,  1),
+    ("fc",         np.int32,   2,  1,  1),
+]
+FLAT_STAGES = {"gap_acc", "gap", "fc"}     # stored in the dump dict as [C]
+
+
+def dump_layers(artifacts_dir, split, n):
+    """Write per-layer reference outputs for the first n tiles of a split
+    to artifacts/layer_dumps/, one raw little-endian C-order file per
+    stage, tile-major, plus manifest.txt (written last). Never overwrites.
+
+    Stage files: <name>.bin holds tile 0, then tile 1, ... (tile-major).
+    Each tile's block is the stage tensor in C (row-major, CHW) order,
+    little-endian, with the dtype given in the manifest.
+
+    manifest.txt format (ASCII, one record per line, space-separated):
+
+        pcam_layer_dump_v1                      magic, line 1
+        split <split>                           8 header lines,
+        num_tiles <n>                           always in this order
+        tile_first 0
+        tile_last <n-1>
+        tile_bytes 27648
+        byte_order little
+        memory_order c_chw
+        num_stages <S>
+        <name> <file> <dtype> <C> <H> <W> <elems_per_tile> <bytes_per_tile>
+        ...                                     S stage lines, file order
+
+    1-D stages (gap_acc, gap, fc) are written with H = W = 1, i.e. as
+    "C 1 1". manifest.txt is written only after every stage file has been
+    closed and size-checked, so a directory with stage .bin files but no
+    manifest.txt holds an incomplete (interrupted) dump and must not be
+    read.
+    """
+    tile_bytes = 3 * 96 * 96
+    if tile_bytes != 27648:
+        raise RuntimeError(f"tile_bytes is {tile_bytes}, expected 27648")
+    # Stage files are written with tobytes() in native order and the
+    # manifest declares little-endian, so refuse to run on a big-endian host.
+    if sys.byteorder != "little":
+        raise RuntimeError(f"host byte order is {sys.byteorder}; layer dumps "
+                           f"are declared little-endian")
+    if n < 1:
+        raise ValueError(f"n must be >= 1, got {n}")
+
+    bin_path = os.path.join(artifacts_dir, "vectors", f"{split}_tiles.bin")
+    raw = np.fromfile(bin_path, dtype=np.uint8, count=n * tile_bytes)
+    if raw.size != n * tile_bytes:
+        raise ValueError(f"{bin_path} holds fewer than {n} tiles "
+                         f"({raw.size} bytes read)")
+    tiles = raw.reshape(n, 3, 96, 96)
+    params = load_params(artifacts_dir)
+
+    out_dir = os.path.join(artifacts_dir, "layer_dumps")
+    names = ["manifest.txt"] + [f"{s[0]}.bin" for s in DUMP_STAGES]
+    if os.path.isdir(out_dir):
+        present = [f for f in names if os.path.exists(os.path.join(out_dir, f))]
+        if present and "manifest.txt" not in present:
+            raise FileExistsError(
+                f"{out_dir} contains {', '.join(present)} but no "
+                f"manifest.txt: a previous dump was interrupted and is "
+                f"incomplete. Refusing to overwrite. Decide whether to "
+                f"delete these files yourself before rerunning "
+                f"(CLAUDE.md: ask before deleting anything in artifacts/).")
+        if present:
+            raise FileExistsError(
+                f"{out_dir} already contains {', '.join(present)}; "
+                f"refusing to overwrite")
+    os.makedirs(out_dir, exist_ok=True)
+
+    files = {}
+    meta = {}
+    try:
+        # Opens are inside the try so a failure on any one of them still
+        # closes the handles already opened.
+        for name, *_ in DUMP_STAGES:
+            files[name] = open(os.path.join(out_dir, f"{name}.bin"), "xb")
+        for i in range(n):
+            d = {}
+            forward_tile(tiles[i], params, dump=d)
+            d["input"] = tiles[i]
+            for name, dt, c, h, w in DUMP_STAGES:
+                if name not in d:
+                    raise KeyError(f"forward_tile dump has no '{name}'")
+                arr = d[name]
+                if name == "gap_acc":
+                    # Checked narrowing, gap_acc only. Under NumPy 2, int32
+                    # .sum() promotes to int64 on every platform, so
+                    # forward_tile holds this as int64 (under NumPy 1.x on
+                    # Windows it stayed int32, hence both are accepted).
+                    # Values are bounded by 36*255 + |bias|, and the kernel
+                    # accumulates GAP in int32, so the dump is int32 once
+                    # the range check proves nothing is lost.
+                    if arr.dtype not in (np.int64, np.int32):
+                        raise ValueError(
+                            f"stage {name}, tile {i}: dtype {arr.dtype}, "
+                            f"expected int64 or int32")
+                    lo, hi = np.iinfo(np.int32).min, np.iinfo(np.int32).max
+                    if not (int(arr.min()) >= lo and int(arr.max()) <= hi):
+                        raise ValueError(
+                            f"stage {name}, tile {i}: range "
+                            f"[{int(arr.min())}, {int(arr.max())}] does not "
+                            f"fit int32")
+                    narrowed = arr.astype(np.int32)
+                    if not np.array_equal(narrowed.astype(np.int64),
+                                          arr.astype(np.int64)):
+                        raise ValueError(
+                            f"stage {name}, tile {i}: int32 narrowing does "
+                            f"not round-trip")
+                    arr = narrowed
+                if arr.dtype != dt:
+                    raise ValueError(
+                        f"stage {name}, tile {i}: dtype {arr.dtype}, "
+                        f"expected {np.dtype(dt)}")
+                want = (c,) if name in FLAT_STAGES else (c, h, w)
+                if not (arr.shape == want and arr.size == c * h * w):
+                    raise ValueError(
+                        f"stage {name}, tile {i}: shape {arr.shape}, "
+                        f"expected {want}")
+                b = np.ascontiguousarray(arr).tobytes()
+                if len(b) != c * h * w * arr.itemsize:
+                    raise RuntimeError(
+                        f"stage {name}, tile {i}: serialized {len(b)} bytes, "
+                        f"expected {c * h * w * arr.itemsize}")
+                files[name].write(b)
+                meta[name] = (arr.dtype.name, c, h, w, c * h * w, len(b))
+    finally:
+        for f in files.values():
+            f.close()
+
+    for name, *_ in DUMP_STAGES:
+        p = os.path.join(out_dir, f"{name}.bin")
+        if os.path.getsize(p) != n * meta[name][5]:
+            raise RuntimeError(
+                f"stage {name}: {p} is {os.path.getsize(p)} bytes, expected "
+                f"{n * meta[name][5]} ({n} tiles); manifest not written")
+
+    lines = ["pcam_layer_dump_v1",
+             f"split {split}",
+             f"num_tiles {n}",
+             "tile_first 0",
+             f"tile_last {n - 1}",
+             f"tile_bytes {tile_bytes}",
+             "byte_order little",
+             "memory_order c_chw",
+             f"num_stages {len(DUMP_STAGES)}"]
+    for name, *_ in DUMP_STAGES:
+        dtn, c, h, w, e, bpt = meta[name]
+        lines.append(f"{name} {name}.bin {dtn} {c} {h} {w} {e} {bpt}")
+    man = os.path.join(out_dir, "manifest.txt")
+    with open(man, "xb") as f:
+        f.write(("\n".join(lines) + "\n").encode("ascii"))
+
+    print(f"read {bin_path} tiles 0..{n - 1}, params from "
+          f"{os.path.join(artifacts_dir, 'weights', 'params.npz')}")
+    print(f"wrote {len(DUMP_STAGES)} stage files + manifest to {out_dir}")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--self-test", action="store_true")
@@ -365,7 +545,17 @@ if __name__ == "__main__":
     ap.add_argument("--root", default="./data")
     ap.add_argument("--split", default="test")
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--dump-layers", type=int, nargs="?", const=8,
+                    default=None, metavar="N")
     a = ap.parse_args()
+
+    if a.dump_layers is not None:
+        if a.self_test or a.limit is not None:
+            ap.error("--dump-layers cannot be combined with --self-test or --limit")
+        if a.dump_layers < 1:
+            ap.error("--dump-layers N requires N >= 1")
+        dump_layers(a.artifacts, a.split, a.dump_layers)
+        sys.exit(0)
 
     if a.self_test:
         self_test()
